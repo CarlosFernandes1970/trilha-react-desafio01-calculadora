@@ -10,9 +10,9 @@ const App = () => {
   const [firstNumber, setFirstNumber] = useState('0');
   const [operation, setOperation] = useState('');
   const handleOnClear=() => {
-    setCurrentNumber('0')
-    setFirstNumber('0')
-    setOperation('')
+    setCurrentNumber('0');
+    setFirstNumber('0');
+    setOperation('');
   };
   
   const handleAddNumber = (num) => {
@@ -34,11 +34,11 @@ const App = () => {
   const handleMinusNumbers = () => {
     if (firstNumber === '0'){
       setFirstNumber(String(currentNumber));
-      setCurrentNumber('0')
+      setCurrentNumber('0');
       setOperation('-');
     }else{
-      const rem = Number(firstNumber) - Number(currentNumber);
-      setCurrentNumber(String(rem));
+      const min = Number(firstNumber) - Number(currentNumber);
+      setCurrentNumber(String(min));
       setOperation('');      
     }
   }
@@ -46,11 +46,11 @@ const App = () => {
   const handlePlusNumbers = () => {
     if (firstNumber === '0'){
       setFirstNumber(String(currentNumber));
-      setCurrentNumber('0')
+      setCurrentNumber('0');
       setOperation('*');
     }else{
-      const rem = Number(firstNumber) * Number(currentNumber);
-      setCurrentNumber(String(rem));
+      const plus = Number(firstNumber) * Number(currentNumber);
+      setCurrentNumber(String(plus));
       setOperation('');      
     }
   }
@@ -58,34 +58,39 @@ const App = () => {
   const handleDivideNumbers = () => {
     if (firstNumber === '0'){
       setFirstNumber(String(currentNumber));
-      setCurrentNumber('0')
+      setCurrentNumber('0');
       setOperation('/');
     }else{
-      const rem = Number(firstNumber) / Number(currentNumber);
-      setCurrentNumber(String(rem));
-      setOperation('');      
+      if (currentNumber === '0'){
+        setCurrentNumber('0');
+      }else{
+        const div = Number(firstNumber) / Number(currentNumber);
+        setCurrentNumber(String(div));
+        setOperation(''); 
+      }
+           
     }
   }
 
   const handleEquals = () => {
     if (firstNumber !== '0' && operation !== '' && setCurrentNumber !== '0'){
       setFirstNumber(String(currentNumber));
-      setCurrentNumber('0')
+      setCurrentNumber('0');
       switch(operation){
         case '+':
           handleSumNumbers();
           break;
-          case '-':
-            handleMinusNumbers();
-            break;
-          case '*':
-              handlePlusNumbers();
-              break;
-          case '/':
-              handleDivideNumbers();
-              break;
-        default:
+        case '-':
+          handleMinusNumbers();
           break;
+        case '*':
+          handlePlusNumbers();
+          break;
+        case '/':
+          handleDivideNumbers();
+          break;
+      default:
+        break;
 
       }
     }
