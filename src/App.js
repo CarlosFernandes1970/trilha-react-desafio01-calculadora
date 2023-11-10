@@ -22,7 +22,7 @@ const App = () => {
   const handleSumNumbers = () => {
     if (firstNumber === '0'){
       setFirstNumber(String(currentNumber));
-      setCurrentNumber('0')
+      setCurrentNumber('0');
       setOperation('+');
     }else{
       const sum = Number(firstNumber) + Number(currentNumber);
@@ -76,6 +76,7 @@ const App = () => {
     if (firstNumber !== '0' && operation !== '' && setCurrentNumber !== '0'){
       setFirstNumber(String(currentNumber));
       setCurrentNumber('0');
+      setOperation('');
       switch(operation){
         case '+':
           handleSumNumbers();
